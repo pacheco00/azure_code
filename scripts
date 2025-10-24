@@ -1,0 +1,31 @@
+powershell
+install-windowsfeature -name webserver
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+guardar como script
+
+storage account con blob, cargar el script
+
+en vm, settings, extensiones, agregar, script personalizado, cargar script
+
+
+
+vmname="vm1"
+username="azuser"
+pass="Azuser123456"
+rg="user-jmgrfydxkubq"
+sgname="jmgrfydxkubq"  
+
+az vm create \
+  --resource-group $rg \
+  --name $vmname \
+  --image MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:latest \
+  --size Standard_DS2_v2 \
+  --admin-username $username \
+  --admin-password $pass \
+
+az storage account create -n $sgname --resource-group $rg --sku Standard_LRS
+az storage container create -n myfiles --account-name $sgname
+
+storageKey=$(az storage account keys list -g $resource -n $storageAccountName --output json --query [0].value)
+
+
