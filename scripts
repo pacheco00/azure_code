@@ -9,11 +9,98 @@ en vm, settings, extensiones, agregar, script personalizado, cargar script
 
 
 
+# variables
+id="ruucnunagdyb"
 vmname="vm1"
 username="azuser"
 pass="Azuser123456"
-rg="user-jmgrfydxkubq"
-sgname="jmgrfydxkubq"  
+rg="user-$id"
+saname="$id"  
+vnetname="vnet-$id"
+nsgname="nsg-$id"
+rtname="rt-$id"
+
+# Crear vnet / subnet
+az network vnet create --resource-group $rg --name $vnetname --address-prefix 10.0.0.0/24 --subnet-name subnet01 --subnet-prefix 10.0.0.0/28 
+az network vnet subnet create --resource-group $rg --vnet-name $vnetname --name subnet02 --address-prefixes 10.0.0.16/28
+
+# Crear nsg
+az network nsg create --resource-group $rg --name $nsgname
+
+# asignar nsg a subnet1
+az network vnet subnet update --resource-group $rg --name subnet01 --vnet-name $vnetname --network-security-group $nsgname
+
+# reglas nsg
+az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name AllowInboundHTTP \
+  --priority 100 \
+  --direction Inbound \
+  --access Allow \
+  --protocol Tcp \
+  --source-address-prefixes '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges 80 \
+  --description "Allow inbound HTTP traffic"
+
+az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name AllowOutboundHTTPS \
+  --priority 200 \
+  --direction Outbound \
+  --access Allow \
+  --protocol Tcp \
+  --source-address-prefixes '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges 443 \
+  --description "Allow outbound HTTPS traffic"
+
+az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name AllowHTTP \
+  --priority 200 \
+  --direction Inbound \
+  --access Allow \
+  --protocol Tcp \
+  --source-address-prefixes '*' \
+  --destination-port-ranges 80 \
+  --description "Allow inbound HTTP traffic"
+
+az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name AllowOutboundHTTP \
+  --priority 300 \
+  --direction Outbound \
+  --access Allow \
+  --protocol Tcp \
+  --source-address-prefixes '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges 80 \
+  --description "Allow outbound HTTP traffic from IIS"
+
+
+# crear route table
+az network route-table create --resource-group $rg --name $rtname
+az network route-table route create --resource-group $rg --route-table-name $rtname --name sample_internet_route --next-hop-type Internet --address-prefix 0.0.0.0/0 
+az network vnet subnet update --resource-group $rg --name subnet02 --vnet-name $vnetname --route-table $rtname
+
+# crear storage account / subir script
+az storage account create -n $saname --resource-group $rg --sku Standard_LRS
+storageKey=$(az storage account keys list -g $rg -n $saname --output json --query [0].value)
+az storage container create -n myfiles --account-name $saname --account-key $storageKey
+echo "Install-WindowsFeature -name Web-Server -IncludeManagementTools" > script.ps1
+az storage blob upload --account-name $saname --account-key $storageKey --container-name myfiles --file script.ps1 --name script.ps1
+
+# crear vm
+vmname="vm1"
+username="azuser"
+pass="Azuser123456"
+rg="user-$id"
+saname="$id"  
 
 az vm create \
   --resource-group $rg \
@@ -22,10 +109,37 @@ az vm create \
   --size Standard_DS2_v2 \
   --admin-username $username \
   --admin-password $pass \
+  --vnet-name $vnetname \
+  --subnet subnet01
 
-az storage account create -n $sgname --resource-group $rg --sku Standard_LRS
-az storage container create -n myfiles --account-name $sgname
 
-storageKey=$(az storage account keys list -g $resource -n $storageAccountName --output json --query [0].value)
+
+
+# Crear un VMSS con Load Balancer público incluido
+
+rg="user-ptksxslosfmy"
+vssname="vssm1"
+username="azuser"
+pass="Azuser123456"
+
+az vmss create \
+  --resource-group $rg \
+  --name $vssname \
+  --image MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:latest \
+  --admin-username $username \
+  --admin-password $pass \
+  --generate-ssh-keys \
+  --instance-count 2 \
+  --vm-sku Standard_DS2_v2 \
+  --zones 1 2 \
+  --public-ip-per-vm \
+  --load-balancer ""
+
+https://learn.microsoft.com/en-us/training/modules/configure-virtual-machine-availability/
+
+
+
+
+
 
 
