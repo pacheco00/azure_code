@@ -24,6 +24,7 @@ Montar uno de los discos en el servidor Windows.
 Montar uno de los discos en el servidor Linux.
 Instalar IIS en Windows, y Nginx en Linux, acceder a las páginas de inicio desde internet.
 Despliegue la infraestructura mencionada como IaC, compare los tiempos de despliegue y comparta sus apreciaciones como Administrador Cloud. (No es necesario hacer que las configuraciones funcionen)
+Esta actividad no esta contemplada dentro de la hora del laboratorio
 
 Sugerencias, habilidades, pistas
 Como presentador, deberá administrar su tiempo.
