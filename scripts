@@ -10,27 +10,34 @@ en vm, settings, extensiones, agregar, script personalizado, cargar script
 
 
 # variables
-id="ruucnunagdyb"
-vmname="vm1"
+id="kjjomfkbthfo"
+vmname1="vm1"
+vmname2="vm2"
 username="azuser"
 pass="Azuser123456"
 rg="user-$id"
-saname="$id"  
-vnetname="vnet-$id"
+saname="sa$id"  
+vnetname1="vnet-$id-1"
+vnetname2="vnet-$id-2"
 nsgname="nsg-$id"
 rtname="rt-$id"
 
-# Crear vnet / subnet
-az network vnet create --resource-group $rg --name $vnetname --address-prefix 10.0.0.0/24 --subnet-name subnet01 --subnet-prefix 10.0.0.0/28 
-az network vnet subnet create --resource-group $rg --vnet-name $vnetname --name subnet02 --address-prefixes 10.0.0.16/28
 
 # Crear nsg
-az network nsg create --resource-group $rg --name $nsgname
+az network nsg create \
+ --resource-group $rg \
+ --name $nsgname
 
-# asignar nsg a subnet1
-az network vnet subnet update --resource-group $rg --name subnet01 --vnet-name $vnetname --network-security-group $nsgname
+az network nsg show \
+ --resource-group $rg \
+ --name $nsgname --query id
 
-# reglas nsg
+nsgid=$(az network nsg show \
+ --resource-group $rg \
+ --name $nsgname \
+ --query id)
+
+ # reglas nsg
 az network nsg rule create \
   --resource-group $rg \
   --nsg-name $nsgname \
@@ -46,71 +53,173 @@ az network nsg rule create \
 
 az network nsg rule create \
   --resource-group $rg \
-  --nsg-name $nsgname \
-  --name AllowOutboundHTTPS \
-  --priority 200 \
-  --direction Outbound \
+  --nsg-name "$nsgname" \
+  --name Allow-RDP \
+  --priority 1000 \
   --access Allow \
-  --protocol Tcp \
-  --source-address-prefixes '*' \
-  --destination-address-prefixes '*' \
-  --destination-port-ranges 443 \
-  --description "Allow outbound HTTPS traffic"
-
-az network nsg rule create \
-  --resource-group $rg \
-  --nsg-name $nsgname \
-  --name AllowHTTP \
-  --priority 200 \
   --direction Inbound \
-  --access Allow \
   --protocol Tcp \
   --source-address-prefixes '*' \
-  --destination-port-ranges 80 \
-  --description "Allow inbound HTTP traffic"
+  --source-port-ranges '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges 3389 \
+  --description "Allow RDP"
 
-az network nsg rule create \
+
+# Crear vnet1 / subnet
+az network vnet create \
+ --resource-group $rg \
+ --name $vnetname1 \
+ --address-prefix 10.0.0.0/24 \
+ --subnet-name subnet01 \
+ --subnet-prefix 10.0.0.0/28 
+
+az network vnet subnet create \
+ --resource-group $rg \
+ --vnet-name $vnetname1 \
+ --name subnet02 \
+ --address-prefixes 10.0.0.16/28
+
+# asignar nsg a subnet1
+az network vnet subnet update \
+ --resource-group $rg \
+ --name subnet01 \
+ --vnet-name $vnetname1 \
+ --network-security-group $nsgname 
+
+# Crear vnet2 / subnet
+az network vnet create \
+ --resource-group $rg \
+ --name $vnetname2 \
+ --address-prefix 10.0.1.0/24 \
+ --subnet-name subnet01 \
+ --subnet-prefix 10.0.1.0/28  
+
+# Crear peering
+az network vnet peering create \
+ --resource-group $rg \
+ --name peering01 \
+ --vnet-name $vnetname1 \
+ --remote-vnet $vnetname2 \
+ --allow-vnet-access
+
+ az network vnet peering create --resource-group $rg --name peering02 \
+ --vnet-name $vnetname2 --remote-vnet $vnetname1 \
+ --allow-vnet-access
+---------------------------------------------------------------------------------------------
+ az network nsg rule create \
   --resource-group $rg \
   --nsg-name $nsgname \
-  --name AllowOutboundHTTP \
-  --priority 300 \
-  --direction Outbound \
+  --name Allow-VNet-Peering \
+  --priority 1100 \
   --access Allow \
-  --protocol Tcp \
-  --source-address-prefixes '*' \
+  --direction Inbound \
+  --protocol '*' \
+  --source-address-prefixes 10.0.1.0/24 \
+  --source-port-ranges '*' \
   --destination-address-prefixes '*' \
-  --destination-port-ranges 80 \
-  --description "Allow outbound HTTP traffic from IIS"
+  --destination-port-ranges '*'
 
+   az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name Allow-VNet-Peering \
+  --priority 1100 \
+  --access Allow \
+  --direction Inbound \
+  --protocol '*' \
+  --source-address-prefixes 10.0.0.0/24 \
+  --source-port-ranges '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges '*'
+------------------------------------------------------------------------------------------------
 
 # crear route table
-az network route-table create --resource-group $rg --name $rtname
-az network route-table route create --resource-group $rg --route-table-name $rtname --name sample_internet_route --next-hop-type Internet --address-prefix 0.0.0.0/0 
-az network vnet subnet update --resource-group $rg --name subnet02 --vnet-name $vnetname --route-table $rtname
+az network route-table create \
+ --resource-group $rg \
+  --name $rtname
+
+az network route-table route create \
+ --resource-group $rg \
+ --route-table-name $rtname \
+ --name sample_internet_route \
+ --next-hop-type Internet \
+ --address-prefix 0.0.0.0/0 
+
+az network vnet subnet update \
+ --resource-group $rg \
+ --name subnet02 \
+ --vnet-name $vnetname1 \
+ --route-table $rtname
 
 # crear storage account / subir script
-az storage account create -n $saname --resource-group $rg --sku Standard_LRS
+az storage account create \
+ -n $saname \
+ --resource-group $rg \
+ --sku Standard_LRS
+
 storageKey=$(az storage account keys list -g $rg -n $saname --output json --query [0].value)
-az storage container create -n myfiles --account-name $saname --account-key $storageKey
+
+az storage container create \
+ -n myfiles \
+ --account-name $saname \
+ --account-key $storageKey
+
 echo "Install-WindowsFeature -name Web-Server -IncludeManagementTools" > script.ps1
-az storage blob upload --account-name $saname --account-key $storageKey --container-name myfiles --file script.ps1 --name script.ps1
+
+az storage blob upload \
+ --account-name $saname \
+ --account-key $storageKey \
+ --container-name myfiles \
+ --file script.ps1 \
+ --name script.ps1
+
+# Create fileshare
+az storage share create \
+ --name documents \
+ --account-name $saname \
+ --account-key $storageKey
+
+az storage file upload \
+ --share-name documents \
+ --source ./script.ps1 \
+ --account-name $saname \
+ --account-key $storageKey
+
 
 # crear vm
-vmname="vm1"
-username="azuser"
-pass="Azuser123456"
-rg="user-$id"
-saname="$id"  
-
 az vm create \
   --resource-group $rg \
-  --name $vmname \
+  --name $vmname1 \
   --image MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:latest \
   --size Standard_DS2_v2 \
   --admin-username $username \
   --admin-password $pass \
-  --vnet-name $vnetname \
-  --subnet subnet01
+  --vnet-name $vnetname1 \
+  --subnet subnet01 \
+  --nsg "/subscriptions/3aad5318-dff9-4ef2-b6c9-3d28d9203fdf/resourceGroups/user-kjjomfkbthfo/providers/Microsoft.Network/networkSecurityGroups/nsg-kjjomfkbthfo"
+  
+az vm create \
+  --resource-group $rg \
+  --name $vmname2 \
+  --image MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:latest \
+  --size Standard_DS2_v2 \
+  --admin-username $username \
+  --admin-password $pass \
+  --vnet-name $vnetname2 \
+  --subnet subnet01 
+
+# Instalar IIS
+az vm run-command invoke \
+ -g $rg -n $vmname2 \
+ --command-id RunPowerShellScript \
+ --scripts "Install-WindowsFeature -name Web-Server -IncludeManagementTools"
+
+az vm open-port \
+ --port 80 \
+ --resource-group $rg \
+ --name $vmname2
+
 
 
 

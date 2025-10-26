@@ -1,0 +1,402 @@
+Laboratorio Azure - Semana de Receso
+Escenario
+Un cliente acaba de adquirir una subscripción en Azure, por lo que no sabe nada acerca de administración de Azure.
+Quiere contratar a un Administrador Cloud para que ejecute un demo de administración, y quiere se realice una presentación a sus clientes y empleados mostrando los beneficios con los que puede contar con esta nueva herramienta.
+Este es un cliente pequeño, por lo que no cuenta con un Centro de Datos.
+
+Los requerimientos para la presentación son los siguientes:
+ Brevemente describir las bondades de la nube, vs la adquisición de servidores físicos para su compañía.
+Cuenta con una hora para su demostración, despliegue de recursos y descripción de los procedimientos a ejecutar, o en ejecución.
+
+El laboratorio consiste en desplegar los siguientes recursos:
+VNET para recursos Windows y una subnet.
+VNET para recursos Linux y una subnet.
+Desplegar peering entre las VNETs.
+Desplegar un servidor Windows.
+Desplegar un servidor Linux.
+Conectarse al servidor Windows y comprobar la conectividad al servidor Linux.
+Conectarse al servidor Linux y comprobar la conectividad al servidor Windows.
+Desplegar un Storage Account, y crear un fileshare y un container.
+Montar el fileshare en los dos servidores.
+Subir o crear archivos en el fileshare y comprobar que en los dos servidores se pueden listar, adicionar y editar información.
+Crear dos discos adicionales.
+Montar uno de los discos en el servidor Windows.
+Montar uno de los discos en el servidor Linux.
+Instalar IIS en Windows, y Nginx en Linux, acceder a las páginas de inicio desde internet.
+Despliegue la infraestructura mencionada como IaC, compare los tiempos de despliegue y comparta sus apreciaciones como Administrador Cloud. (No es necesario hacer que las configuraciones funcionen)
+
+Sugerencias, habilidades, pistas
+Como presentador, deberá administrar su tiempo.
+Tiene varios días para practicar y trabajar en sus habilidades blandas y habilidades técnicas.
+Para la instalación de IIS y Nginx, investigue qué herramientas cloud puede usar para este objetivo, no cuenta como válido ingresar a los servidores y hacer la instalación.
+Todos los despliegues y configuraciones se han ejecutado en los laboratorios.
+Existe un componente de investigación, aprovéchelo para incrementar su conocimiento.
+
+---------------------------------------------------------------------------------------------------------------
+
+
+Escenario
+Un cliente acaba de adquirir una subscripción en Azure, por lo que no sabe nada acerca de administración de Azure.
+Quiere contratar a un Administrador Cloud para que realize un demo de administración, y quiere se se realice una presentación a sus clientes y empleados mostrando los beneficios con los que puede contar con esta nueva herramienta.
+Este es un cliente pequeño, por lo que no cuenta con un Centro de Datos
+
+Los requerimientos para la presentaión son los siguientes:
+* Brevemente describir las bondades de la nube, vs la adquisición de servidores físicos para su oficina.
+* Cuenta con una hora para su demostración, despliegue de recursos y descripción de los procedimientos a ejecutar, o en ejecución.
+
+Los requerimientos técnicos son los siguientes:
+* Desplegar dos vnets, una para ambientes Windows, y otra para ambientes Linux.
+* Cada una de las vnets debe contar con una subnet.
+* Desplegar o configurar peering entre las redes.
+* Deplegar una MV Wndows.
+* Desplegar una MV Linux.
+* Verificar la conectividad entre los dos servidores.
+* Desplegar un storage account, un fileshare y un container.
+* Montar el fileshare en los dos servidores.
+* Instalar IIS en Windows, comprobar su funcionamiento.
+* Instalar Nginx en Linux, comprobar su funcionamiento.
+
+
+Sugerencias / Pistas
+* Crear vntes y subnets usando Azure CLI.
+* Crear peering. (puede escoger entre CLI y GUI)
+* Crear las máquinas virtuales usando el portal de Azure.
+* Crear storage account, fileshare y un container. (puede escoger entre CLI y GUI)
+* Instalar ISS, revisar extensiones
+* Instalar Nginx, revisar 
+
+-----------------------------------------------------------------------------------------
+
+id="tthdhmjklzue"
+rg="user-$id"
+vnetname1="vnet-windows"
+vnetname2="vnet-linux"
+
+Crear vnets por linea de comando
+
+# Crear windows / subnet
+az network vnet create \
+ --resource-group $rg \
+ --name $vnetname1 \
+ --address-prefix 10.0.0.0/24 \
+ --subnet-name subnet01 \
+ --subnet-prefix 10.0.0.0/28 
+
+# Crear linux / subnet
+az network vnet create \
+ --resource-group $rg \
+ --name $vnetname2 \
+ --address-prefix 10.0.1.0/24 \
+ --subnet-name subnet01 \
+ --subnet-prefix 10.0.1.0/28  
+
+# Crear peering
+az network vnet peering create \
+ --resource-group $rg \
+ --name peering01 \
+ --vnet-name $vnetname1 \
+ --remote-vnet $vnetname2 \
+ --allow-vnet-access
+
+az network vnet peering create \
+ --resource-group $rg \
+ --name peering02 \
+ --vnet-name $vnetname2 \
+ --remote-vnet $vnetname1 \
+ --allow-vnet-access
+
+
+Crear stora account por linea de comando
+az storage account create \
+ -n $saname \
+ --resource-group $rg \
+ --sku Standard_LRS
+
+storageKey=$(az storage account keys list -g $rg -n $saname --output json --query [0].value)
+
+az storage container create \
+ -n myfiles \
+ --account-name $saname \
+ --account-key $storageKey
+
+echo "Install-WindowsFeature -name Web-Server -IncludeManagementTools" > script.ps1
+
+az storage blob upload \
+ --account-name $saname \
+ --account-key $storageKey \
+ --container-name myfiles \
+ --file script.ps1 \
+ --name script.ps1
+
+# Create fileshare
+az storage share create \
+ --name documents \
+ --account-name $saname \
+ --account-key $storageKey
+
+az storage file upload \
+ --share-name documents \
+ --source ./script.ps1 \
+ --account-name $saname \
+ --account-key $storageKey
+
+
+
+
+
+
+
+
+
+# variables
+id="kjjomfkbthfo"
+vmname1="vm1"
+vmname2="vm2"
+username="azuser"
+pass="Azuser123456"
+rg="user-$id"
+saname="sa$id"  
+vnetname1="vnet-$id-1"
+vnetname2="vnet-$id-2"
+nsgname="nsg-$id"
+rtname="rt-$id"
+
+
+
+
+Crear MV Windows y Linux usando el potal
+
+
+
+
+
+-----------------------------------------------------------------------
+# Crear nsg
+az network nsg create \
+ --resource-group $rg \
+ --name $nsgname
+
+az network nsg show \
+ --resource-group $rg \
+ --name $nsgname --query id
+
+nsgid=$(az network nsg show \
+ --resource-group $rg \
+ --name $nsgname \
+ --query id)
+
+ # reglas nsg
+az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name AllowInboundHTTP \
+  --priority 100 \
+  --direction Inbound \
+  --access Allow \
+  --protocol Tcp \
+  --source-address-prefixes '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges 80 \
+  --description "Allow inbound HTTP traffic"
+
+az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name "$nsgname" \
+  --name Allow-RDP \
+  --priority 1000 \
+  --access Allow \
+  --direction Inbound \
+  --protocol Tcp \
+  --source-address-prefixes '*' \
+  --source-port-ranges '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges 3389 \
+  --description "Allow RDP"
+
+
+# Crear vnet1 / subnet
+az network vnet create \
+ --resource-group $rg \
+ --name $vnetname1 \
+ --address-prefix 10.0.0.0/24 \
+ --subnet-name subnet01 \
+ --subnet-prefix 10.0.0.0/28 
+
+az network vnet subnet create \
+ --resource-group $rg \
+ --vnet-name $vnetname1 \
+ --name subnet02 \
+ --address-prefixes 10.0.0.16/28
+
+# asignar nsg a subnet1
+az network vnet subnet update \
+ --resource-group $rg \
+ --name subnet01 \
+ --vnet-name $vnetname1 \
+ --network-security-group $nsgname 
+
+# Crear vnet2 / subnet
+az network vnet create \
+ --resource-group $rg \
+ --name $vnetname2 \
+ --address-prefix 10.0.1.0/24 \
+ --subnet-name subnet01 \
+ --subnet-prefix 10.0.1.0/28  
+
+# Crear peering
+az network vnet peering create \
+ --resource-group $rg \
+ --name peering01 \
+ --vnet-name $vnetname1 \
+ --remote-vnet $vnetname2 \
+ --allow-vnet-access
+
+ az network vnet peering create --resource-group $rg --name peering02 \
+ --vnet-name $vnetname2 --remote-vnet $vnetname1 \
+ --allow-vnet-access
+---------------------------------------------------------------------------------------------
+ az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name Allow-VNet-Peering \
+  --priority 1100 \
+  --access Allow \
+  --direction Inbound \
+  --protocol '*' \
+  --source-address-prefixes 10.0.1.0/24 \
+  --source-port-ranges '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges '*'
+
+   az network nsg rule create \
+  --resource-group $rg \
+  --nsg-name $nsgname \
+  --name Allow-VNet-Peering \
+  --priority 1100 \
+  --access Allow \
+  --direction Inbound \
+  --protocol '*' \
+  --source-address-prefixes 10.0.0.0/24 \
+  --source-port-ranges '*' \
+  --destination-address-prefixes '*' \
+  --destination-port-ranges '*'
+------------------------------------------------------------------------------------------------
+
+# crear route table
+az network route-table create \
+ --resource-group $rg \
+  --name $rtname
+
+az network route-table route create \
+ --resource-group $rg \
+ --route-table-name $rtname \
+ --name sample_internet_route \
+ --next-hop-type Internet \
+ --address-prefix 0.0.0.0/0 
+
+az network vnet subnet update \
+ --resource-group $rg \
+ --name subnet02 \
+ --vnet-name $vnetname1 \
+ --route-table $rtname
+
+# crear storage account / subir script
+az storage account create \
+ -n $saname \
+ --resource-group $rg \
+ --sku Standard_LRS
+
+storageKey=$(az storage account keys list -g $rg -n $saname --output json --query [0].value)
+
+az storage container create \
+ -n myfiles \
+ --account-name $saname \
+ --account-key $storageKey
+
+echo "Install-WindowsFeature -name Web-Server -IncludeManagementTools" > script.ps1
+
+az storage blob upload \
+ --account-name $saname \
+ --account-key $storageKey \
+ --container-name myfiles \
+ --file script.ps1 \
+ --name script.ps1
+
+# Create fileshare
+az storage share create \
+ --name documents \
+ --account-name $saname \
+ --account-key $storageKey
+
+az storage file upload \
+ --share-name documents \
+ --source ./script.ps1 \
+ --account-name $saname \
+ --account-key $storageKey
+
+
+# crear vm
+az vm create \
+  --resource-group $rg \
+  --name $vmname1 \
+  --image MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:latest \
+  --size Standard_DS2_v2 \
+  --admin-username $username \
+  --admin-password $pass \
+  --vnet-name $vnetname1 \
+  --subnet subnet01 \
+  --nsg "/subscriptions/3aad5318-dff9-4ef2-b6c9-3d28d9203fdf/resourceGroups/user-kjjomfkbthfo/providers/Microsoft.Network/networkSecurityGroups/nsg-kjjomfkbthfo"
+  
+az vm create \
+  --resource-group $rg \
+  --name $vmname2 \
+  --image MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:latest \
+  --size Standard_DS2_v2 \
+  --admin-username $username \
+  --admin-password $pass \
+  --vnet-name $vnetname2 \
+  --subnet subnet01 
+
+# Instalar IIS
+az vm run-command invoke \
+ -g $rg -n $vmname2 \
+ --command-id RunPowerShellScript \
+ --scripts "Install-WindowsFeature -name Web-Server -IncludeManagementTools"
+
+az vm open-port \
+ --port 80 \
+ --resource-group $rg \
+ --name $vmname2
+
+
+
+
+
+# Crear un VMSS con Load Balancer público incluido
+
+rg="user-ptksxslosfmy"
+vssname="vssm1"
+username="azuser"
+pass="Azuser123456"
+
+az vmss create \
+  --resource-group $rg \
+  --name $vssname \
+  --image MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:latest \
+  --admin-username $username \
+  --admin-password $pass \
+  --generate-ssh-keys \
+  --instance-count 2 \
+  --vm-sku Standard_DS2_v2 \
+  --zones 1 2 \
+  --public-ip-per-vm \
+  --load-balancer ""
+
+https://learn.microsoft.com/en-us/training/modules/configure-virtual-machine-availability/
+
+
+
+
+
+
+
