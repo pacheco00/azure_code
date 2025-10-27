@@ -1,0 +1,582 @@
+chat
+Chat en línea
+
+error
+Te damos la bienvenida
+
+Somos un equipo de expertos que brinda asesoría a los clientes para tomar las mejores decisiones para acceder a activos que facilitan su crecimiento y competitividad.
+
+Espera un momento, un asesor te atenderá pronto
+
+ATEHORTUA ATEHORTUA ERIKA se ha conectado.
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Buenas tardes, te doy la bienvenida a Leasing Bancolombia, mi nombre es Erika Atehortua , espero te encuentres muy bien.
+7:18
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Óscar,cuéntame ¿Cómo puedo asesorarte el día de hoy?
+7:19
+
+user
+Oscar Pacheco
+Buenas tardes Erika, qué tal. Quisiera saber cuál es el estado del leasing 281828.
+7:19
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+¿Qué información requieres?
+7:19
+
+user
+Oscar Pacheco
+Cuál es es estado del leasing.
+7:20
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+¿Si estás al día?
+7:20
+
+user
+Oscar Pacheco
+El estado global del leasin.
+7:20
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar, ¿Por favor podrías ser mas especifico con la información que requieres? Para brindarte toda la asesoría con mucho gusto
+7:21
+
+user
+Oscar Pacheco
+No entiendo, necesito saber o conocer cual es el estado del leasing.
+7:22
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Requieres saber por ejemplo si estás al día con los pagos, o cómo han sido aplicados o requieres saldo adeudado?
+7:23
+
+user
+Oscar Pacheco
+ok, estoy al día con los pagos?
+7:23
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Con gusto te colaboro, vamos a validar.
+7:23
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Para continuar con la asesoría debemos contar con tu autenticación para validar tu identidad.
+7:23
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+¿Actualmente eres cliente del Banco y manejas usuario y clave de la sucursal virtual personas de Bancolombia? sin indicarla
+7:23
+
+user
+Oscar Pacheco
+si
+7:23
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+A continuación se te habilitará un módulo para que ingreses usuario, la clave principal y luego debe dar clic en el botón Ingresar. Los datos ingresados estarán seguros, serán únicamente utilizados para atender tu requerimiento.
+7:24
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+¿Estás de acuerdo?
+7:24
+
+user
+Oscar Pacheco
+si
+7:25
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+***** Se abrirá una ventana emergente en el cual se debe autenticar *******
+7:25
+
+Autenticación exitosa
+
+user
+Oscar Pacheco
+Bot🤖: Se autenticó correctamente el usuario 🤖
+7:26
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Muchas gracias por ingresar los datos.
+7:26
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Permitame unos minutos por favor realizo las validaciones para tu solicitud.
+7:26
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Muy amable por la espera. Permíteme unos minutos por favor sigo gestionando tu requerimiento. Gracias.
+7:28
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Muy amable por la espera.
+7:30
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar, consultando tu operación, se encuentra al día con los pagos, próximo canon el 1/11/2025 por valor de 2.309.708,00.
+7:30
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Me registra además un saldo a favor sin aplicación de $74.403.078,00 ingresado el 22/10/2025 ¿A qué corresponde dicho saldo?
+7:30
+
+user
+Oscar Pacheco
+Qué quiere decir saldo a favor?
+7:31
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Se refiere a saldo a favor sin aplicación
+7:31
+
+user
+Oscar Pacheco
+Qué quiere decir saldo sin aplicación?
+7:32
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar ¿Hiciste un pago el día 22 de octubre?
+7:33
+
+user
+Oscar Pacheco
+No.
+7:33
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+El día 22/10/2025 se ingresó un pago a tu cartera de 74.403.078,00
+7:34
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Dicho saldo no se ha aplicado a tu contrato si no que está a favor en tu cartera
+7:34
+
+user
+Oscar Pacheco
+A ver, estoy entendiendo que tengo un saldo a favor, que no se ha aplicado. Cuándo sería aplicado?
+7:35
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+No se aplica hasta que el cliente indique las instrucciones.
+7:35
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Deberás indicarnos como aplicar dicho saldo a tu operación.
+7:36
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Disculpe, ¿Continua en línea?
+7:37
+
+user
+Oscar Pacheco
+Y qué opciones tengo?, para aplicar dicho saldo?
+7:37
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Podemos verificar si el saldo alcanza para liquidar la deuda. ¿Tienes comprobante del pago?
+7:38
+
+user
+Oscar Pacheco
+No. no tengo comprobante. Cómo se puede saber quién hizo ese pago?
+7:39
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+En este caso debemos radicar una solicitud para verificar el origen del saldo.
+7:39
+
+user
+Oscar Pacheco
+Qué otras opciones tengo que sean inmediatas? Podría hablar con un ascesor?
+7:40
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Cómo el dinero está en tu cartera de leasing es a través de nuestros canales, ya que un asesor de servicio al cliente o de oficina te direccionaría con nosotros.
+7:41
+
+user
+Oscar Pacheco
+ok, existe algún limite de tiempo que esa transacción esté alli sin indicar qué hacer con ella?
+7:42
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+No hay un tiempo, pero siempre recomendamos indicar instrucciones de aplicación ya que el sistema lo puede tomar aleatorio o dejarlo quieto
+7:43
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Confírmame por favor tu correo electrónico registrado registrado.
+7:43
+
+user
+Oscar Pacheco
+pacheco00@gmail.com
+7:43
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Permíteme unos minutos por favor termino de radicar la solicitud.
+7:44
+
+user
+Oscar Pacheco
+Aquí estoy viendo que supuestamente hay un asignado a mi leasing, es asi? Gerente de cuenta: MODIAZ1
+7:45
+
+user
+Oscar Pacheco
+Cuál es la radicación que está hacindo?
+7:46
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Para producto leasing no manejamos asesor especializado para cada cliente. Todo es manejado a través de nuestras líneas de atención. Tu cuentas con asesor preferencial.
+7:46
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+El radicado es para que te aclaren el origen del saldo
+7:46
+
+user
+Oscar Pacheco
+Teniendo en cuenta ese saldo, consignación, lo que sea, tengo que hacer el pago de la proxima cuota?
+7:47
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Tu próxima cuota es el 1/11/2025 por valor de 2.309.708,00, puede que el sistema tome la cuota de ese día del saldo a favor o puede que no.
+7:48
+
+user
+Oscar Pacheco
+Cuando le preguntaba si podía hablar con un ascesor, quería saber si me podrían llamar.
+7:49
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Puedes programar tu llamada a través de www.bancolombia.com o contactarnos a nuestra linea 604 3196800
+7:50
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar, ya te tomé la solicitud y queda bajo el radicado: 8017668180 ; con un tiempo de gestión de 3 días hábiles. Con respuesta al correo electrónico: pacheco00@gmail.com
+7:50
+
+user
+Oscar Pacheco
+Viendo los pagos quehe realizado desde Agosto, veo algo que dice Valor sobrante para el mes de octubre, eso qué quiere decir?
+7:51
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar te confirmo, el saldo de 74.403.078,00 fue ingresado el 22/10/2025, pero me indicas que no realizaste ningún pago ese día.
+7:52
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Disculpe, ¿Continua en línea?
+7:54
+
+user
+Oscar Pacheco
+Precisamente a eso me refiría cuando preguntaba, cuál es el estado del leasing. Se de la existencia de ese pago, pero desconozco cómo va el leasing, si esta cerrado, que veo que no, si esta pendiente de algo, que entiendo está pendiente por aplicar, si tengo que hacer algun pago, pero no es claro, por que me responde que lo puede tomar o no del saldo, etc. entonces, hasta el momento, apesar que me has dado información, no sé cual es el estado del leasing. No sé si me de a entender.
+7:54
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar, el estado de tu leasing es activo con próxima cuota el 1 de noviembre.
+7:55
+
+user
+Oscar Pacheco
+Me aparece u total pagado de 79.022.494. la suma supongo de esa consignación de 74.xx y el valor sobrante de 2.309.708
+7:55
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar el saldo ingresado el día 22 de octubre de 2025 fue de 74.403.078,00
+7:56
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+El cuál esta sin aplicación ya que no tenemos instrucciones de como proceder con este saldo.
+7:56
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Los demás pagos ingresados durante este año corresponden a las cuotas mensuales.
+7:58
+
+user
+Oscar Pacheco
+De esta conversación, queda alcuna copia, se envía a mi correo?
+7:58
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+No Oscar, en el momento no tenemos permisos de enviar esta conversación, puedes tomarle captura de pantalla.
+7:58
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+De igual manera todas nuestras interacciones son grabadas y monitoreadas.
+7:58
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Ten presente entonces estar atento de la aclaración del origen del saldo y contactarnos para dejarnos las instrucciones de cómo proceder con este saldo de 74.403.078,00.
+7:59
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Disculpe, ¿Continua en línea?
+8:01
+
+user
+Oscar Pacheco
+Es que no entiendo, el mismo banco hizo esa operación, ese leasing está en proceso de cierre, pero nadie me da información, y veo que ustedes tampoco pueden ver qué esta pasando. Tengo un valor sobrante, no se preguntan porqué?, e igual me dice que tengo que hacer el siguiente pago.
+8:01
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar para enviar a cancelar tu deuda debes solicitar una liquidación total a una fecha exacta.
+8:03
+
+user
+Oscar Pacheco
+Bueso ascesoría, y salgo peor de como estaba, no hay un análisis de la situación, en realida hasta este momento, no tengo respuestas.... no pueden hacer nada hasta que no se aplique ese dinero, que pasa si yo digo que lo apliquen, pero después el banco dice que eso no se pisía hacer?.
+8:03
+
+user
+Oscar Pacheco
+El banco es el que está llevando ese proceso, no yo...
+8:03
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Y me indicas que no tienes conocimiento del origen del saldo, y para enviar a aplicar el pago debemos contar con el soporte y por qué medio de pago realizaste este pago.
+8:03
+
+user
+Oscar Pacheco
+por eso me toca hacer esto para saber que hacer, y no me aclaran nada...
+8:04
+
+user
+Oscar Pacheco
+Se encuentra en línea?
+8:05
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar para eso tomamos el radicado para identificar el origen del saldo y te aclaren por que tienes ese saldo en tu cartera.
+8:06
+
+user
+Oscar Pacheco
+Nuevamente, el banco hizo ese pago...
+8:06
+
+user
+Oscar Pacheco
+Nuevamente pregunto, ese "Valor sobrante", qué es, qué pasa con él.
+8:07
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+No comprendo Oscar.
+8:07
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+¡El Banco te pago ese saldo?
+8:07
+
+user
+Oscar Pacheco
+Imagínese yo, y ud es la ascesora....
+8:07
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar te confirmo, tomamos el radicado 8017668180, donde solicitamos nos aclaren el origen del saldo
+8:08
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Ya que cómo cliente no tienes conocimiento de éste a mi los permisos no me permiten verificar movimientos de cuentas, solamente evidencio el saldo en tu cartera de leasing
+8:08
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Una vez aclarado el origen del saldo podrás disponer de este teniendo esta aclaración
+8:09
+
+user
+Oscar Pacheco
+Y cómo dispongo de él?
+8:10
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Podemos verificar si el saldo alcanza para liquidar la deuda.
+8:10
+
+user
+Oscar Pacheco
+Si us solo puede ver los temas de saldos, quién me puede asesorar respecto a el tramite de cierre del leasing?
+8:11
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Todo el proceso respecto a tu producto leasing debes solicitarlo a través de este canal o nuestros canales telefónicos.
+8:13
+
+user
+Oscar Pacheco
+Pero Erica, eso estoy haciendo, y no consigo las respuestas que necesito, qué hago?
+8:13
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar te confirmo que ya radicamos la respectiva solicitud para aclarar el saldo
+8:14
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Debemos esperar la respuesta para proceder con el saldo
+8:14
+
+user
+Oscar Pacheco
+No necesito saber quien consigo ese dinero, necesito saber qué esta pasando con el leasing.
+8:14
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Tu operación está al día
+8:15
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Sin alertas.
+8:15
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+No se evidencian novedades con esta
+8:15
+
+user
+Oscar Pacheco
+Eso ya lo sé, gracias por confirmar. Pero sigo sin saber qué va a pasar con el leasing. Si el banco hizo esa consignación, quien debe hacer la aplicación?.
+8:16
+
+user
+Oscar Pacheco
+Por que si yo indico que apliquen ese saldo, y resulta que yo no debía hacer eso, qué podría pasar?
+8:17
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+¿Por qué indicas que el banco hizo la consignación?
+8:17
+
+user
+Oscar Pacheco
+Porque la propiedad que está asociada a ese leasing está en proceso de venta, todo a travez del banco.
+8:18
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar pero para esto alguien entonces debió pagar ese saldo, y Bancolombia no realiza ese tipo de operaciones
+8:20
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Te confirmo, para aplicar el saldo como liquidación total debemos contar con el soporte de pago y que tu nos indiques por que medio se realizó el pago (sea cheque, efectivo, etc)
+8:21
+
+user
+Oscar Pacheco
+no.... ahora sí me dejó peor!!!!
+8:21
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Es por eso que radicamos la solicitud, para identificar el origen
+8:21
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Sin soporte del origen del saldo no podemos aplicarte el saldo.
+8:21
+
+user
+Oscar Pacheco
+Por eso, entonces, qué hago? alguien me puede asesorar con más detalle?, que me diga qué ahcer?, aparte de "haga el pago de la proxima cuota"?
+8:22
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Oscar debes esperar la respuesta del radicado
+8:22
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Allí responderán el origen del saldo
+8:23
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Una vez aclaren este punto
+8:23
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Te comunicas por este medio y verificamos nuevamente para proceder con la aplicación de este saldo a favor
+8:23
+
+isotipo-bancolombia
+ATEHORTUA ATEHORTUA ERIKA
+Te recomiendo pagar la cuota normal por el medio que usas regularmente en las fechas de corte.
+8:24
+
+Qué vaina esto..... muchas gracias por su dispocisión, 
+send-message
+Calificar experiencia
