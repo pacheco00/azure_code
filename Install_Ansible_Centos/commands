@@ -1,0 +1,29 @@
+https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html#installing-distros
+https://docs.fedoraproject.org/en-US/epel/getting-started/
+dnf config-manager --set-enabled crb && dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+
+
+dnf config-manager --set-enabled crb && dnf install
+sudo yum install epel-release
+sudo yum install ansible-core
+rpm -qa | grep python
+dnf install ansible ansible-doc
+
+ansible --version
+ansible localhost -m ping
+
+ssh-keygen
+ssh-copy-id ip
+
+
+
+su -
+echo 'ansible ALL=(ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/ansible
+ansible ALL=(ALL) NOPASSWD: ALL
+
+
+
+
+
+/home/ansible/complete_devops/clientstatus.yml
+
